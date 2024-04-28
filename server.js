@@ -1,11 +1,11 @@
 import "dotenv/config.js";
-import InitKnex from "knex";
+import knex from "knex";
 import Fastify from 'fastify';
 
 import { GeneralController } from './controllers/generalController.js';
 import { IndexRoutes } from './routes/indexRoutes.js';
 
-const knex = InitKnex({
+export const pg = knex({
   client: process.env.DB_ENGINE,
   connection: {
     host: process.env.DB_HOST,
@@ -13,6 +13,10 @@ const knex = InitKnex({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     name: process.env.DB_NAME,
+  },
+  pool: {
+    min: 0,
+    max: 12
   }
 });
 
