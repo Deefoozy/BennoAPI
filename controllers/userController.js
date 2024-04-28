@@ -1,11 +1,15 @@
 import { pg } from "../server.js";
 import validator from "validator";
 
+import { UserLogic } from "../business_logic/users.js";
+
 export class UserController {
     static async GetUserList(request, response) {
+        const result = await pg('users')
+
         response.send({
             message: "De zuipers",
-            data: await pg('users'),
+            data: result,
         });
     }
 
@@ -17,9 +21,13 @@ export class UserController {
             })
         }
 
+        const result = await UserLogic.expandInfo(
+            await pg('users').where('id', request.params.uuid).first()
+        )
+
         response.send({
             message: "Gotem",
-            data:  await pg('users').where('id', request.params.uuid),
+            data: result,
         });
     }
 
@@ -42,7 +50,6 @@ export class UserController {
                 'user_bier_meubels.bier_meubel_id'
             )
             .where('user_bier_meubels.user_id', request.params.uuid)
-
 
         response.send({
             message: "Gotem",
