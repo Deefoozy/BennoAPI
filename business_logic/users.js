@@ -25,7 +25,7 @@ export class UserLogic {
     }
 
     static calculateKrattekes(biertjes, vol = false) {
-        if (biertjes === 0) return 0;
+        if (biertjes === 0 || !UserLogic.hasBierBuik('benno')) return 0;
         
         const kratInhoud = 24
 
@@ -34,5 +34,9 @@ export class UserLogic {
         if (!vol || biertjes % kratInhoud == 0) return result;
 
         return result + 1;
+    }
+
+    static hasBierBuik(user) {
+        return user === 'benno';
     }
 }
