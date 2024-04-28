@@ -1,4 +1,4 @@
-import { BankRoutes } from "./bankRoutes.js"
+import { MeubelRoutes } from "./meubelRoutes.js"
 import { UserRoutes } from "./userRoutes.js"
 
 export class IndexRoutes {
@@ -7,7 +7,7 @@ export class IndexRoutes {
     }
     
     static RegisterRoutes(app, _, done) {
-        app.register(BankRoutes.RegisterRoutes, BankRoutes.options);
+        app.register(MeubelRoutes.RegisterRoutes, MeubelRoutes.options);
         app.register(UserRoutes.RegisterRoutes, UserRoutes.options);
 
         done();

@@ -8,6 +8,7 @@ export class UserRoutes {
     static RegisterRoutes(app, _, done) {
         app.get('/', UserController.GetUserList)
         app.get('/:uuid', UserController.GetUser)
+        app.get('/:uuid/meubels', UserController.GetUserMeubels)
 
         done();
     }
