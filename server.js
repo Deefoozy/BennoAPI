@@ -1,3 +1,4 @@
+import "dotenv/config.js";
 import Fastify from 'fastify';
 
 import { GeneralController } from './controllers/generalController.js';
