@@ -1,14 +1,15 @@
 import Fastify from 'fastify';
 
 import { GeneralController } from './controllers/generalController.js';
+import { IndexRoutes } from './routes/indexRoutes.js';
 
 const fastify = Fastify({
   logger: true
 });
 
-fastify.get('/', async function handler (request, reply) {
-  return GeneralController.Greeting();
-});
+fastify.get('/test', GeneralController.Greeting);
+
+fastify.register(IndexRoutes.RegisterRoutes, IndexRoutes.options);
 
 try {
   await fastify.listen({ port: 3000 })
